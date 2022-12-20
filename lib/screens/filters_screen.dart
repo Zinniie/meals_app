@@ -16,6 +16,21 @@ class _FiltersScreenState extends State<FiltersScreen> {
   bool _vegetarian = false;
   bool _vegan = false;
   bool _lactoseFree = false;
+
+  Widget _buildSwitchListTile(
+    String title,
+    String description,
+    bool currentValue,
+    dynamic updateValue,
+  ) {
+    return SwitchListTile(
+      title: Text(title),
+      value: currentValue,
+      subtitle: Text(description),
+      onChanged: updateValue,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +50,43 @@ class _FiltersScreenState extends State<FiltersScreen> {
             Expanded(
                 child: ListView(
               children: [
-                SwitchListTile(
-                  title: Text('Gluten Free'),
-                  value: _glutenFree,
-                  subtitle: Text('Only include gliuten-free meals'),
-                  onChanged: (newValue) {
+                _buildSwitchListTile(
+                  'Gluten Free',
+                  'Only include gluten-free meals',
+                  _glutenFree,
+                  (newValue) {
                     setState(() {
                       _glutenFree = newValue;
+                    });
+                  },
+                ),
+                _buildSwitchListTile(
+                  'Lactose Free',
+                  'Only include lactose meals',
+                  _glutenFree,
+                  (newValue) {
+                    setState(() {
+                      _lactoseFree = newValue;
+                    });
+                  },
+                ),
+                _buildSwitchListTile(
+                  'Vegetarian Free',
+                  'Only include vegetarian-free meals',
+                  _vegetarian,
+                  (newValue) {
+                    setState(() {
+                      _vegetarian = newValue;
+                    });
+                  },
+                ),
+                _buildSwitchListTile(
+                  'Vegan Free',
+                  'Only include vegan meals',
+                  _vegan,
+                  (newValue) {
+                    setState(() {
+                      _vegan = newValue;
                     });
                   },
                 )
